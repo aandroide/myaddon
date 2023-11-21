@@ -1,0 +1,4 @@
+v4.0.10
+Compatibile con Kodi 19 e versioni successive
+Versione aggiornata il 13.11.2023 testazione31
+
