@@ -17,7 +17,7 @@ try:
 except ImportError:
     import urllib
 
-branch = 'stable'
+branch = 'master'
 user = 'aandroide'
 repo = 'myaddon'
 addonDir = os.path.dirname(os.path.abspath(__file__)) + '/'
