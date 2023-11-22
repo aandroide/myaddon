@@ -1,0 +1,4 @@
+#!/bin/sh
+#This file is used to create a zip file of the plugin. This file is to be copied into the .git/hooks folder of the repository clone.
+#This file will only run OK from the root folder of the repository clone.
+python3 -mzipfile -c repo/plugin.video.lo-scienziato-pazzo.zip plugin.video.lo-scienziato-pazzo
