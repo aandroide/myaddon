@@ -9,6 +9,9 @@ import plugintools
 import zipfile
 import ntpath
 
+from updates import init as update
+from platformcode import config
+
 USER_AGENT = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3'
 base='http://aandroide.github.io'
 ADDON=xbmcaddon.Addon(id='plugin.video.lo-scienziato-pazzo')
@@ -21,6 +24,11 @@ def CATEGORIES():
     match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?escription="(.+?)"').findall(link)
     for name,url,iconimage,fanart,description in match:
         addDir(name,url,1,iconimage,fanart,description)
+    
+    commit_sha,commit_message=update.getSavedCommit()
+    update_des=str(config.get_addon_version(False))+'('+commit_sha[:7]+')\n\ncommit: '+commit_message
+    addDir("Check for update","",2,"" ,"",update_des)
+    
     setView('movies', 'MAIN')
         
     
@@ -216,10 +224,10 @@ def setView(content, viewType):
     if ADDON.getSetting('auto-view')=='true':
         xbmc.executebuiltin("Container.SetViewMode(%s)" % ADDON.getSetting(viewType) )
         
-        
-if mode==None or url==None or len(url)<1:
-        CATEGORIES()
-       
+if mode==2:
+    update.run()        
+elif mode==None or url==None or len(url)<1:
+        CATEGORIES()       
 elif mode==1:
         wizard(name,url,description)
         
