@@ -51,6 +51,17 @@ def getSavedCommit(addonDir=ADDON_DIR):
     if sha=="": sha="???"
     return sha,message    
 
+def refreshLang():
+    from platformcode import config
+    language = config.get_language()
+    if language == 'eng':
+        xbmc.executebuiltin("SetGUILanguage(resource.language.it_it)")
+        xbmc.executebuiltin("SetGUILanguage(resource.language.en_en)")
+    else:
+        xbmc.executebuiltin("SetGUILanguage(resource.language.en_en)")
+        xbmc.executebuiltin("SetGUILanguage(resource.language.it_it)")
+
+
 def update(commitMessage):
     logger.log("STARTING UPDATE")
     dp=platformtools.dialog_progress("Updating","downloading....")
@@ -99,7 +110,12 @@ def update(commitMessage):
     #restart addon
     # xbmc.executebuiltin(f'RunScript(special://home/addons/{ADDON_ID}/service.py)')
     xbmc.executebuiltin("UpdateLocalAddons")
+    # xbmc.executebuiltin('Addon.Stop(' + ADDON_ID+ ')')
+    xbmc.sleep(10)
+    refreshLang()
     xbmc.executebuiltin('Addon.Stop(' + ADDON_ID+ ')')
+    xbmc.executebuiltin('RunAddon(' + ADDON_ID + ')')
+    
     # xbmc.executebuiltin(f'RunScript(special://home/addons/{ADDON_ID}/default.py)')
     # xbmc.executebuiltin('RunAddon(' + ADDON_ID + ')')
 
