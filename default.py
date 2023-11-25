@@ -158,6 +158,9 @@ def addDir(name,url,mode,iconimage,fanart,description):
         
 def get_params():
         param=[]
+        if len(sys.argv)<=2:
+            return param
+        
         paramstring=sys.argv[2]
         if len(paramstring)>=2:
                 params=sys.argv[2]
