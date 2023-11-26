@@ -76,42 +76,42 @@ class AddonMonitor(xbmc.Monitor):
 
 
 
-if __name__ == "__main__":
-    logger.info('Starting Lo Scienziato Pazzo service')
+# if __name__ == "__main__":
+#     logger.info('Starting Lo Scienziato Pazzo service')
 
 
-    if config.get_setting('autostart'):
-        xbmc.executebuiltin('RunAddon(plugin.video.' + config.PLUGIN_NAME + ')')
+#     if config.get_setting('autostart'):
+#         xbmc.executebuiltin('RunAddon(plugin.video.' + config.PLUGIN_NAME + ')')
 
-    # check if the user has any connection problems
-    #from platformcode.checkhost import test_conn
-    #run_threaded(test_conn, (True, not config.get_setting('resolver_dns'), True, [], [], True))
+#     # check if the user has any connection problems
+#     #from platformcode.checkhost import test_conn
+#     #run_threaded(test_conn, (True, not config.get_setting('resolver_dns'), True, [], [], True))
 
-    monitor = AddonMonitor()
+#     monitor = AddonMonitor()
 
-    while True:
-        try:
-            schedule.run_pending()
-        except:
-            logger.error(traceback.format_exc())
+#     while True:
+#         try:
+#             schedule.run_pending()
+#         except:
+#             logger.error(traceback.format_exc())
 
-        if needsReload:
-            join_threads()
-            #db.close()
-            logger.info('Relaunching service.py')
-            xbmc.executeJSONRPC(
-                '{"jsonrpc": "2.0", "id":1, "method": "Addons.SetAddonEnabled", "params": { "addonid": "plugin.video.lo-scienziato-pazzo", "enabled": false }}')
-            xbmc.executeJSONRPC(
-                '{"jsonrpc": "2.0", "id":1, "method": "Addons.SetAddonEnabled", "params": { "addonid": "plugin.video.lo-scienziato-pazzo", "enabled": true }}')
-            logger.debug(threading.enumerate())
-            break
+#         if needsReload:
+#             join_threads()
+#             #db.close()
+#             logger.info('Relaunching service.py')
+#             xbmc.executeJSONRPC(
+#                 '{"jsonrpc": "2.0", "id":1, "method": "Addons.SetAddonEnabled", "params": { "addonid": "plugin.video.lo-scienziato-pazzo", "enabled": false }}')
+#             xbmc.executeJSONRPC(
+#                 '{"jsonrpc": "2.0", "id":1, "method": "Addons.SetAddonEnabled", "params": { "addonid": "plugin.video.lo-scienziato-pazzo", "enabled": true }}')
+#             logger.debug(threading.enumerate())
+#             break
 
-        if monitor.waitForAbort(1): # every second
-            logger.debug('Lo Scienziato Pazzo service EXIT')
-            # db need to be closed when not used, it will cause freezes
-            join_threads()
-            logger.debug('Close Threads')
-            #db.close()
-            #logger.debug('Close DB')
-            break
-    logger.debug('Lo Scienziato Pazzo service STOPPED')
+#         if monitor.waitForAbort(1): # every second
+#             logger.debug('Lo Scienziato Pazzo service EXIT')
+#             # db need to be closed when not used, it will cause freezes
+#             join_threads()
+#             logger.debug('Close Threads')
+#             #db.close()
+#             #logger.debug('Close DB')
+#             break
+#     logger.debug('Lo Scienziato Pazzo service STOPPED')
