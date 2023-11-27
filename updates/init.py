@@ -43,10 +43,19 @@ def getSavedCommit(addonDir=ADDON_DIR):
 
     try:
         track=  file_helper.fOpen(os.path.join(addonDir, trackingFile), 'r')
-        sha= track.readline().strip()
-        message= track.readline().strip()
+        sha= track.readline()
+        message= track.readline()
     except Exception as ex:
-        logger.log("ERROR")
+        logger.log("ERROR in read commit")
+
+    try:sha= sha.decode('utf-8')
+    except:pass    
+    
+    try:sha= message.decode('utf-8')
+    except:pass    
+
+    sha=sha.strip()
+    message=message.strip()
 
     if sha=="": sha="???"
     return sha,message    
