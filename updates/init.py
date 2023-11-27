@@ -51,7 +51,7 @@ def getSavedCommit(addonDir=ADDON_DIR):
     try:sha= sha.decode('utf-8')
     except:pass    
     
-    try:sha= message.decode('utf-8')
+    try:message= message.decode('utf-8')
     except:pass    
 
     sha=sha.strip()
