@@ -309,15 +309,15 @@ def updateFromZip(message=config.get_localized_string(80050)):
     logger.info("finalizado zip: %s hacia %s, %s"%(localfilename, destpathname, extractedDir))
 
     # rename addon.xml
-    lwd = os.listdir(os.path.join(extractedDir, f"{repo}-{branch}", f"plugin.video.{config.PLUGIN_NAME}"))
+    lwd = os.listdir(os.path.join(extractedDir, f"{repo}-{branch}"))
     logger.info(f"lwd: {lwd}")
-    addon_xml = os.path.join(extractedDir, f"{repo}-{branch}", f"plugin.video.{config.PLUGIN_NAME}", 'addon.xml')
-    final_addon_xml = os.path.join(extractedDir, f"{repo}-{branch}", f"plugin.video.{config.PLUGIN_NAME}", 'addon_subsequent.xml')
-    logger.info(f"Personalizing addon.xml: {os.path.exists(addon_xml)} - {os.path.exists(final_addon_xml)} ({addon_xml} to {final_addon_xml})")
+    addon_xml = os.path.join(extractedDir, f"{repo}-{branch}",  'addon.xml')
+    #final_addon_xml = os.path.join(extractedDir, f"{repo}-{branch}", 'addon_subsequent.xml')
+    #logger.info(f"Personalizing addon.xml: {os.path.exists(addon_xml)} - {os.path.exists(final_addon_xml)} ({addon_xml} to {final_addon_xml})")
     if os.path.exists(addon_xml):
         remove(addon_xml)
-    fr = filetools.rename(final_addon_xml, addon_xml, silent=False, vfs=False)
-    logger.info(f"Personalized addon.xml: {fr}")
+    #fr = filetools.rename(final_addon_xml, addon_xml, silent=False, vfs=False)
+    #logger.info(f"Personalized addon.xml: {fr}")
     #if not fr:
     #    assert 0, f"Error renaming {final_addon_xml} to {addon_xml}"
 
