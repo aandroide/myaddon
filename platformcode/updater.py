@@ -334,7 +334,7 @@ def updateFromZip(message=config.get_localized_string(80050)):
         #I don't know what the hell happened with the folder name
         ld = os.listdir(extractedDir)
         logger.info(f"Folders under {extractedDir}: {ld}, caspita!")
-        extracted_subdir = os.path.join(extractedDir, ld[-1], 'plugin.video.lo-scienziato-pazzo')
+        extracted_subdir = os.path.join(extractedDir, ld[-1])
     if os.path.exists(extracted_subdir):
         if extractedDir != addonDir:
             logger.info(f"Removing addon dir {addonDir}")
