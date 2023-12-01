@@ -66,7 +66,7 @@ def check(background=False):
     except:
         calcCurrHash()
         localCommitFile = open(os.path.join(addonDir, trackingFile), 'r+')
-    localCommitSha = localCommitFile.read()
+    localCommitSha = localCommitFile.readline()
     localCommitSha = localCommitSha.replace('\n', '') # da testare
     logger.info('Commit locale: ' + localCommitSha)
     updated = False
@@ -311,11 +311,11 @@ def updateFromZip(message=config.get_localized_string(80050)):
     # rename addon.xml
     lwd = os.listdir(os.path.join(extractedDir, f"{repo}-{branch}"))
     logger.info(f"lwd: {lwd}")
-    addon_xml = os.path.join(extractedDir, f"{repo}-{branch}",  'addon.xml')
+    # addon_xml = os.path.join(extractedDir, f"{repo}-{branch}",  'addon.xml')
     #final_addon_xml = os.path.join(extractedDir, f"{repo}-{branch}", 'addon_subsequent.xml')
     #logger.info(f"Personalizing addon.xml: {os.path.exists(addon_xml)} - {os.path.exists(final_addon_xml)} ({addon_xml} to {final_addon_xml})")
-    if os.path.exists(addon_xml):
-        remove(addon_xml)
+    # if os.path.exists(addon_xml):
+    #     remove(addon_xml)
     #fr = filetools.rename(final_addon_xml, addon_xml, silent=False, vfs=False)
     #logger.info(f"Personalized addon.xml: {fr}")
     #if not fr:
