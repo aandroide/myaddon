@@ -21,11 +21,11 @@ addonname = addon.getAddonInfo('name')
 
 _hdr_pat = re.compile("^@@ -(\d+),?(\d+)? \+(\d+),?(\d+)? @@.*")
 
-branch = 'master'
+branch = 'android'
 user = 'aandroide'
 repo = 'myaddon'
 addonDir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-addonsDir = os.path.dirname(addonDir)
+addonsDir =addonDir #os.path.dirname(addonDir)
 maxPage = 5  # le api restituiscono 30 commit per volta, quindi se si è rimasti troppo indietro c'è bisogno di andare avanti con le pagine
 trackingFile = "last_commit.txt"
 
@@ -55,7 +55,7 @@ def check(background=False):
     from lib import patch
     if not config.get_setting('addon_update_enabled', default=True):
         return False, False
-    logger.info('Cerco aggiornamenti2..')
+    logger.info('Cerco aggiornamenti...')
     commits = loadCommits()
     #logger.info(f'Commits trovati: {commits}') ##If you don't need to debug, comment out this, as it has lenghty output
     if not commits:
@@ -66,7 +66,7 @@ def check(background=False):
     except:
         calcCurrHash()
         localCommitFile = open(os.path.join(addonDir, trackingFile), 'r+')
-    localCommitSha = localCommitFile.read()
+    localCommitSha = localCommitFile.readline()
     localCommitSha = localCommitSha.replace('\n', '') # da testare
     logger.info('Commit locale: ' + localCommitSha)
     updated = False
@@ -309,15 +309,15 @@ def updateFromZip(message=config.get_localized_string(80050)):
     logger.info("finalizado zip: %s hacia %s, %s"%(localfilename, destpathname, extractedDir))
 
     # rename addon.xml
-    lwd = os.listdir(os.path.join(extractedDir, f"{repo}-{branch}", f"plugin.video.{config.PLUGIN_NAME}"))
+    lwd = os.listdir(os.path.join(extractedDir, f"{repo}-{branch}"))
     logger.info(f"lwd: {lwd}")
-    addon_xml = os.path.join(extractedDir, f"{repo}-{branch}", f"plugin.video.{config.PLUGIN_NAME}", 'addon.xml')
-    final_addon_xml = os.path.join(extractedDir, f"{repo}-{branch}", f"plugin.video.{config.PLUGIN_NAME}", 'addon_subsequent.xml')
-    logger.info(f"Personalizing addon.xml: {os.path.exists(addon_xml)} - {os.path.exists(final_addon_xml)} ({addon_xml} to {final_addon_xml})")
-    if os.path.exists(addon_xml):
-        remove(addon_xml)
-    fr = filetools.rename(final_addon_xml, addon_xml, silent=False, vfs=False)
-    logger.info(f"Personalized addon.xml: {fr}")
+    # addon_xml = os.path.join(extractedDir, f"{repo}-{branch}",  'addon.xml')
+    #final_addon_xml = os.path.join(extractedDir, f"{repo}-{branch}", 'addon_subsequent.xml')
+    #logger.info(f"Personalizing addon.xml: {os.path.exists(addon_xml)} - {os.path.exists(final_addon_xml)} ({addon_xml} to {final_addon_xml})")
+    # if os.path.exists(addon_xml):
+    #     remove(addon_xml)
+    #fr = filetools.rename(final_addon_xml, addon_xml, silent=False, vfs=False)
+    #logger.info(f"Personalized addon.xml: {fr}")
     #if not fr:
     #    assert 0, f"Error renaming {final_addon_xml} to {addon_xml}"
 
@@ -334,7 +334,7 @@ def updateFromZip(message=config.get_localized_string(80050)):
         #I don't know what the hell happened with the folder name
         ld = os.listdir(extractedDir)
         logger.info(f"Folders under {extractedDir}: {ld}, caspita!")
-        extracted_subdir = os.path.join(extractedDir, ld[-1], 'plugin.video.lo-scienziato-pazzo')
+        extracted_subdir = os.path.join(extractedDir, ld[-1])
     if os.path.exists(extracted_subdir):
         if extractedDir != addonDir:
             logger.info(f"Removing addon dir {addonDir}")
