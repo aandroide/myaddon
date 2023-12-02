@@ -1,4 +1,4 @@
-# addon lo scenziato pazzo
+# addon lo scienziato pazzo
 ## Installazione
 To make the addon zip file be updated with each commit, you should copy the update_zip/pre-commit file to the .git/hooks folder of your repository. This will make that the zip file be updated each time you commit changes to your repository.
 ## Utilizzo
