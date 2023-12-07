@@ -16,7 +16,7 @@ msgstr ""
 "Language: en_EN\n"
 
 msgctxt "#20000"
-msgid "Lo Scenziato Pazzo"
+msgid "Lo Scienziato Pazzo"
 msgstr ""
 
 msgctxt "#20001"
@@ -6429,7 +6429,7 @@ msgid "Installing..."
 msgstr ""
 
 msgctxt "#80033"
-msgid "Choose the version of KoD to install"
+msgid "Choose the version of Scienziato Pazzo to install"
 msgstr ""
 
 msgctxt "#80034"

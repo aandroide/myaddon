@@ -178,17 +178,20 @@ def check(background=False):
             if background:
                 #notification = config.get_localized_string(80040)
                 #xbmc.executebuiltin("UpdateLocalAddons")
-                notification = "Commits received: %s"
-                platformtools.dialog_notification(config.get_localized_string(20000), notification % (commits[0]['sha'][:7],), time=3000, sound=False)
-                #try:
-                #    with open(config.changelogFile, 'a+') as fileC:
-                #        fileC.write(changelog)
-                #except:
-                #    import traceback
-                #    logger.error(traceback.format_exc())
+                #notification = "Commits received: %s"
+                platformtools.dialog_notification(config.get_localized_string(20000), config.get_localized_string(80040) % commits[0]['sha'][:7], time=3000, sound=False)
+                #platformtools.dialog_notification(config.get_localized_string(20000), notification % (commits[0]['sha'][:7],), time=3000, sound=False)
+                platformtools.dialog_ok('Lo Scienziato Pazzo', 'Aggiornamenti applicati:\n' + changelog)
+                try:
+                    with open(config.changelogFile, 'a+') as fileC:
+                        fileC.write(changelog)
+                except:
+                    import traceback
+                    logger.error(traceback.format_exc())
             elif changelog:
-                changelog = config.get_changelog_text()
+                #changelog = config.get_changelog_text()
                 platformtools.dialog_ok(config.get_localized_string(20000), config.get_localized_string(80041) + changelog)
+                
     else:
         logger.info('Nessun nuovo aggiornamento')
 

@@ -4,8 +4,8 @@
 # ------------------------------------------------------------
 
 import sys, xbmc
-from core.item import Item
-from core import filetools
+#from core.item import Item
+from platformcode import filetools
 from platformcode import config, logger, platformtools
 from platformcode.logger import WebErrorException
 
@@ -24,6 +24,6 @@ def start():
                 changelog = fileC.read()
                 if changelog.strip() and config.get_setting("addon_update_message"):
                     platformtools.dialog_ok('Lo scenziato pazzo', 'Aggiornamenti applicati:\n' + changelog)
-            filetools.remove(config.changelogFile)
+            #filetools.remove(config.changelogFile)
         except:
             pass
