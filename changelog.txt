@@ -1,0 +1,4 @@
+v5.0.1
+Compatibile con Kodi 19 e versioni successive
+Versione aggiornata il 18.11.2023 test 02
+
