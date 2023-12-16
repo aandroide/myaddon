@@ -11,7 +11,7 @@ from updates import file_helper,utills
 
 AUTHOR='aandroide'
 REPO='myaddon'
-BRANCH='test'
+BRANCH='stable'
 ADDON_ID='plugin.video.lo-scienziato-pazzo'
 CHECK_FOR_UPDATE_TITLE="Checking for update"
 destpathname = xbmc.translatePath("special://home/addons/")
