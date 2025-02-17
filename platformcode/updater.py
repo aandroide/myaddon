@@ -33,8 +33,9 @@ maxPage = 5  # le api restituiscono 30 commit per volta, quindi se si è rimasti
 trackingFile = "last_commit.txt"
 
 def wizard():
-    name='test'
-    url= 'https://www.dropbox.com/scl/fi/wa72e0hkspev5wonx7bpq/test.zip?rlkey=rl2mp1awarn513xjee9wzwo8m&st=y82y7w2d&dl=1'
+    name='artic'
+    #url= 'https://www.dropbox.com/scl/fi/wa72e0hkspev5wonx7bpq/test.zip?rlkey=rl2mp1awarn513xjee9wzwo8m&st=y82y7w2d&dl=1'
+    url= 'https://www.dropbox.com/scl/fi/epqt5iinnzstk48ey0rcb/artic.zip?rlkey=3udxp42iylzt3d5x36h2gbjg2&st=j7ys0124&dl=1'
     path = xbmcvfs.translatePath(os.path.join('special://home/addons','packages'))
     dp = xbmcgui.DialogProgress()
     dp.create("LO SCIENZIATO PAZZO","In Download \n\n Attendere Prego")
